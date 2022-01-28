@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A04Link</title>
+  </head>
+  <body>
+    <h1>A04 Link</h1>
+
+    <h3>인터넷 상의 다른 웹사이트와 연결 [절대패스]</h3>
+    <p>
+      대한민국에 대표 포털로는
+      <a href="https://www.naver.com/">네이버</a>와 <a href="https://www.daum.net/">다음</a>이
+      있습니다. 파라메터가 있는 상세페이지는 파라메터까지 걸어야 한다.
+      <a href=""></a>
+    </p>
+
+    <h3>절대 패스</h3>
+    <p>
+      어떤 페이지에서 링크를 설정해도 변경되지 않는 고정값<br />
+      <a href="http://127.0.0.1:5500/A01HTML.html">A01 HTML</a> 페이지는 단락에 대한 설명
+      <a href="http://127.0.0.1:5500/HTML/company/way.html">오시는 길</a>도 참조할 수 있습니다.
+    </p>
+
+    <ul>
+      <li><a href="http://127.0.0.1:5500/A01HTML.html">A01HTML</a></li>
+      <li><a href="http://127.0.0.1:5500/HTML/company/way.html">Way</a></li>
+      <li>
+        <a href="http://127.0.0.1:5500/HTML/product/phone/iphone.html">iphone</a>
+      </li>
+      <li>
+        <a href="http://127.0.0.1:5500/HTML/product/phone/samsung.html">samsung</a>
+      </li>
+      <li><a href="http://127.0.0.1:5500/HTML/product/tv/lg.html">lg</a></li>
+      <!-- 맨 앞에 /가 붙으면 절대패스, 안 붙으면 상대패스 -->
+    </ul>
+
+    <h3>상대 패스</h3>
+    <p>
+      현재 페이지를 기준으로 이동할 페이지의 패스를 설정한다.<br />
+      현재 페이지는 ./파일명<br />
+      한 폴더 상위 페이지는 ../파일명<br />
+      하위 페이지는 폴더명/파일명
+    </p>
+
+    <ul>
+      <li><a href="./A01HTML.html">A01HTML</a></li>
+      <li><a href="./HTML/company/way.html">Way</a></li>
+      <li><a href="./HTML/product/phone/iphone.html">iphone</a></li>
+      <li><a href="HTML/product/phone/samsung.html">samsung</a></li>
+      <li><a href="./HTML/product/tv/lg.html">lg</a></li>
+      <!-- 맨 앞에 /가 붙으면 절대패스, 안 붙으면 상대패스 -->
+    </ul>
+
+    <h3>새 창 열기</h3>
+    <div>
+      새 창을 띄워서 새로운 페이지로 이동하게 한다.<br />
+      <a href="https://www.naver.com/" target="_blank">네이버</a>
+    </div>
+  </body>
+</html>

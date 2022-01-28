@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>단락</title>
+  </head>
+  <body>
+    <!-- 이 상단과 좌측은 태그 자체가 여백을 가지고 있어도 무시된다(적용 안됨) -->
+    <!-- h1 태그는 위와 밑에 한 줄씩 띄라고 들어가 있음. 맨 위에 있으면 무시됨 -->
+    <!-- 머릿말 태그 h1 ~ h6까지 있음. 모두 BOLD속성이 포함되어 있다.
+    줄 바꿈도 포함되어 있음. -->
+    <h1>Hello</h1>
+    <h2>Hello</h2>
+    <h3>Hello</h3>
+    <h4>Hello</h4>
+    <h5>Hello</h5>
+    <h6>Hello</h6>
+
+    <h1>애국가</h1>
+    <!-- p는 단락을 나타내는 태그. 아래와 위에 한 줄의 공간을 갖는다. 줄 공간이 적용되어 있으면 중복은 무시됨. -->
+    <p>
+      동해물과 <i>백두산이</i> <u>마르고</u> 닳도록<br />
+      <!-- 줄바꿈 br-->
+      <strong>하느님이</strong> <s>보우하사</s> <em>우리나라 만세</em>
+    </p>
+    <hr>
+    <blockquote>
+      어디서 인용한 문구를 기술할 목적으로 사용한다.
+      한 줄 이상 기술 가능
+    </blockquote>
+    <!-- div 태그는 스스로 개행하지 않음.  -->
+    <div>동해물과 <sup>백두산이</sup> 마르고 닳도록</div>
+    <p>
+      <div>
+        <!-- HTML은 알지 못하는 태그를 무시해 버린다. -->
+        &lt;SHIN&gt;
+        어쩌구 저쩌구 
+        <!-- nbsp는 공백 문자 -->
+        &nbsp;
+      </div>
+      <br> 
+      <!-- <br>로 개행이 이미 적용되어 있으므로 /p가 적용이 안됨. -->
+    </p>
+
+    <div>
+      줄을 한 줄 이상 개행하고자 할 경우
+      <br>
+      <!-- 강제 개행. 워드에서 엔터친 것과 동일한 효과. 쓰는 만큼 개행됨. -->
+    </div>
+  </body>
+</html>
