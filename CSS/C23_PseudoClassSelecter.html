@@ -70,6 +70,10 @@
 			background-color: gray;
 			color: white;
 		}
+
+		input[type="radio"]:checked + span{
+			color: orange;
+		}
 	</style>
 </head>
 <body>
@@ -105,6 +109,9 @@
 				<li><a href="">React</a></li>
 			</ul>
 		</nav>
+
+		<label><input type='radio' name="js"><span>JavaScript</span></label>
+		<label><input type='radio' checked><span>jQuery</span></label>
 	</div>
 	
 	</body>

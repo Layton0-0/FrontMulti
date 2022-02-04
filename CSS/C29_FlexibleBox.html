@@ -1,61 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flexible Box</title>
-  <style type="text/css">
-    .box    { border: 1px solid orange; width: 100px; height: 100px;}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexible Box</title>
+    <style type="text/css">
+      .box {
+        border: 1px solid orange;
+        width: 100px;
+        height: 100px;
+      }
 
-    #one    { border: 1px solid gray; width: 500px; }
+      /* 
+      display: flex -> 바깥 #one을 위에서 아래 형태로 배치
+      display: inline-flex -> 바깥 #one을 좌, 우 형태로 배치/ 넓어지면 옆으로 이동.
 
-    #two    { border: 1px solid gray; width: 500px; }
+      flex-direction: row/column + reverse -> 내부 요소를 어떻게 배치할 것인가를 결정.
+      flex-wrap: wrap/nowrap -> 넓이 값에 내부 요소 배치 크기에 따른 개행여부. nowrap-> 알아서 줄어든다.
+      */
+      #one {
+        border: 1px solid gray;
+        width: 500px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      /* 
+      flex-flow = flex-direction + flex-wrap 
+      justify-content -> 주 축의 아이템 정렬
+      flex-start, flex-end, center, 
+      space-around, space-between(최초 좌측, 마지막 우측을 기준으로 공평하게 공간 분할), space-evenly
+      */
+      #two {
+        border: 1px solid gray;
+        width: 500px;
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: flex-start;
+      }
+      /* 
+      align-content -> 교차축에 대한 아이템 정렬 
+        flex-start, flex-end, center, space-between, space-around, space-evenly, 
+        stretch(높이값이 지정되지 않으면 자동으로 늘려줌. box의 height를 삭제하고 확인.)
+      */
+      #three {
+        border: 1px solid gray;
+        width: 500px;
+        height: 300px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-content: stretch;
+      }
+      /* 
+      align-item -> 교차축에 대한 아이템 정렬. align-content가 stretch로 지정되어 있어야 적용됨.
+        줄 별로 축을 갖는다. 그 축을 기준으로 정렬된다.
+        flex-start, flex-end, center, space-between, space-around, space-evenly
+      */
+      #four {
+        border: 1px solid gray;
+        width: 500px;
+        height: 300px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-content: stretch;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="one">
+      <div class="box">A</div>
+      <div class="box">A</div>
+      <div class="box">A</div>
+      <div class="box">A</div>
+      <div class="box">A</div>
+    </div>
 
-    #three  { border: 1px solid gray; width: 500px; height: 300px; }
+    <div id="two">
+      <div class="box">B1</div>
+      <div class="box">B2</div>
+      <div class="box">B3</div>
+    </div>
 
-    #four   { border: 1px solid gray; width: 500px; height: 300px; }
-  </style>
-</head>
-<body>
+    <div id="three">
+      <div class="box">C</div>
+      <div class="box">C</div>
+      <div class="box">C</div>
+      <div class="box">C</div>
 
-  <div id="one">
-    <div class="box">A</div>
-    <div class="box">A</div>
-    <div class="box">A</div>
-    <div class="box">A</div>
-    <div class="box">A</div>
-  </div>
+      <div class="box">C</div>
+      <div class="box">C</div>
+      <div class="box">C</div>
+      <div class="box">C</div>
+    </div>
 
-  <div id="two">
-    <div class="box">B</div>
-    <div class="box">B</div>
-    <div class="box">B</div>
-  </div>
+    <div id="four">
+      <div class="box">D</div>
+      <div class="box" style="height: 50px">D</div>
+      <div class="box">D</div>
+      <div class="box" style="height: 70px">D</div>
 
-  <div id="three">
-    <div class="box">C</div>
-    <div class="box">C</div>
-    <div class="box">C</div>
-    <div class="box">C</div>
-
-    <div class="box">C</div>
-    <div class="box">C</div>
-    <div class="box">C</div>
-    <div class="box">C</div>
-  </div>
-
-  <div id="four">
-    <div class="box">D</div>
-    <div class="box" style="height: 50px;">D</div>
-    <div class="box">D</div>
-    <div class="box" style="height: 70px;">D</div>
-
-    <div class="box" style="height: 30px;">D</div>
-    <div class="box">D</div>
-    <div class="box" style="height: 50px;">D</div>
-    <div class="box">D</div>
-  </div>
-
-</body>
+      <div class="box" style="height: 30px">D</div>
+      <div class="box">D</div>
+      <div class="box" style="height: 50px">D</div>
+      <div class="box">D</div>
+    </div>
+  </body>
 </html>

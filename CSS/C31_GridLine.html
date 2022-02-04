@@ -1,32 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grid Line</title>
-  <style type="text/css">
-    #container { width: 600px; margin: 20px auto;}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Line</title>
+    <style type="text/css">
+      #container {
+        width: 600px;
+        margin: 20px auto;
+      }
 
-    #wrapper { width: 100%; }
-    
-    .box { padding: 10px; }
-    .box1 { background-color: lightgreen; }
-    .box2 { background-color: coral; }
-    .box3 { background-color: darkgreen; }
-    .box4 { background-color: darksalmon; }
-  </style>
-</head>
-<body>
-  <div id="container">
-    
-    <div id="wrapper">
-      <div class="box box1">box 1</div>
-      <div class="box box2">box 2</div>
-      <div class="box box3">box 3</div>
-      <div class="box box4">box 4</div>
+      #wrapper {
+        width: 100%;
+        display: grid;
+        /* 3 * 3짜리 칸을 만들음. */
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, auto);
+      }
+
+      .box {
+        padding: 10px;
+      }
+      .box1 {
+        background-color: lightgreen;
+        display: grid;
+        /* 
+        table의 colspan과 동일하게 합치는 명령
+        시작축 번호/합쳐질 마지막 축 번호 
+        */
+        grid-column: 1/4;
+      }
+      .box2 {
+        background-color: coral;
+        display: grid;
+        /* 위에 것들에 영향을 받지 않고 자신만의 것을 유지하기 위해 따로 start를 설정함. */
+        grid-column-start: 1;
+        grid-row-start: 2;
+        grid-row: 2/4;
+      }
+      .box3 {
+        background-color: darkgreen;
+        grid-column-start: 2;
+        grid-row-start: 2;
+        grid-column: 2/4;
+      }
+      .box4 {
+        background-color: darksalmon;
+        grid-column-start: 2;
+        grid-row-start: 3;
+        grid-column: 2/4;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="wrapper">
+        <div class="box box1">box 1</div>
+        <div class="box box2">box 2</div>
+        <div class="box box3">box 3</div>
+        <div class="box box4">box 4</div>
+      </div>
     </div>
-  </div>
-
-</body>
+  </body>
 </html>
