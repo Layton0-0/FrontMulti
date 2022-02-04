@@ -43,8 +43,13 @@
         background-color: #ffff99;
         float: left;
         /* absolute: 상위 요소가 position을 가지고 있으면 상위 요소의 좌, 상단 기준으로 배치된다.
-				상위 요소가 position을 가지고 있지 않으면 브라우저 좌, 상단으로 기준으로 배치된다. */
-        position: absolute;
+				상위 요소가 position을 가지고 있지 않으면 브라우저 좌, 상단으로 기준으로 배치된다. 
+        sticky: 상위 요소의 크기가 정해져 있어야 한다. 상위 요소의 크기가 %면 적용 안됨.
+        기준점(left, right)이 있어야 적용된다. 상위 요소가 다 보일 때는 기본 배치와 동일하지만
+        스크롤이 생기면 같이 움직이지 않고 그 자리에 멈춰서 계속 표시된다.
+        top과 left 등에 지정하는 값을 스크롤 할 때 유지할 간격이 된다.
+        */
+        position: sticky;
         left: 100px;
         top: 100px;
       }
