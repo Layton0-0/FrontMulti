@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A02 JavaScript</title>
+    <!-- 줄 순서대로 먼저 읽히기 때문에 선언되어 있지 않은 변수는 에러를 발생시킴. -->
+    <!-- <script type="text/javascript" src="./A02Footer.js"></script> -->
+    <!-- 외부에 분리하고 그 파일을 가져와서 사용하는 방법 -->
+    <script type="text/javascript" src="./A02Header.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1>A02 JavaScript</h1>
+
+      <div id="result"></div>
+
+      <!-- 상위 html 요소에 적절한 값을 변경 등의 작업이 필요한 경우 -->
+      <script type="text/javascript" src="./A02Body.js"></script>
+
+      <!-- 문서의 마지막 body 태그 위에 기술
+        html 요소가 모두 읽어지고 난 후에 어떠한 작업이 필요한 경우 -->
+      <script type="text/javascript" src="./A02Footer.js"></script>
+    </div>
+  </body>
+</html>
