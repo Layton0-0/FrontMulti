@@ -47,18 +47,22 @@ const inner2 = outer2(100);
 console.log('inner2 -> ', inner2);
 const result = inner2();
 console.log(result);
-
-
-function outer3(x) {
-    console.log('outer 함수 호출', x);
-
-}
-
-var inner = outer3(10);
-
-
+console.log('');
 
 
 // 함수의 인자나 리턴 값이 될 수 있다.
 
+function onAdd(x, y) {
+    return x + y;
+}
+function onMin(x, y) {
+    return x - y;
+}
 
+const r = onAdd(10, 20);
+console.log(r + 100);
+console.log(r - 2);
+
+function func(x, y, fn) {
+    let result = onAdd(x, y);
+};
