@@ -21,7 +21,7 @@ var objB = objA;
 console.log(objB == objB, objA === objB);
 
 objA.name = 'HungBu';
-console.log(objB == objB, objA === objB);
+console.log(objA == objB, objA === objB);
 console.log('');
 
 
@@ -35,21 +35,26 @@ console.log(objA === objC);
 console.log('');
 
 
-function func(x, y) {
-    x = 200;
-    y.name = 'BangJa';
-};
+
 
 var num = 100;
 var obj = {
-    name: 'NolBu', 
+    name: 'NolBu',
     age: 30
 };
 
+function func(x, y) {
+    x = 1;
+    y.name = 'ABC';
+};
+let x = 100;
+let y = { name: 'Y', num: 200 };
+
 console.log('----- 함수 호출 이전 -----');
+console.log(x, y);
 console.log(num, obj);
 
-func(num, obj);
-
+func(x, y);
+// 레퍼런스 변수를 넘기느냐 그냥 지역변수를 넘기느냐에 따라 함수 밖으로 나왔을 때 값이 변경하는지 아닌지 달라짐.
 console.log('----- 함수 호출 이후 -----');
-console.log(num, obj);
+console.log(x, y);

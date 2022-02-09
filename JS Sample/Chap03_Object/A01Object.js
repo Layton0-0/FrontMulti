@@ -11,6 +11,7 @@ console.log(`${nolbu}님의 총점은 ${total}이고 평균은 ${avg}입니다.`
 console.log('');
 
 // 객체 Object를 이용하여 하나의 이름으로 묶자.
+// let는 재선언은 안되지만 값 변경은 가능하다.
 let hungBu = new Object();
 hungBu.name = '흥부';
 hungBu.kor = 100;
