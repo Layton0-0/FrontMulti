@@ -2,19 +2,16 @@
 console.log('---------------- this -----------------');
 
 // 객체 내부 메소드 내부의 함수.
-var count = 100;
+// let는 TDZ에 올라감. var이 window에 올라감.
+// 함수 안의 함수의 this는 window를 가리킨다.
+let count = 100;
 
-var myObj = {
-	
-	visit: function(){ 
-        
-
-        function inner(x) {
-            
-        }
-
-        inner(2);
-	}
+const myObj = {
+    count: 0,
+    visit: function () {
+        ++this.count;
+        console.log('visit: ', this.count);
+    }
 };
 
 myObj.visit();
@@ -22,7 +19,7 @@ console.log('');
 
 
 console.log('--------------- 편법 that ---------------');
-var count = 100;
+// var count = 100;
 
 
 
@@ -37,7 +34,7 @@ var cnt = 10;
 
 var person = {
     name: 'NolBu',
-    display: function() { 
+    display: function () {
         console.log(this.name);
     }
 }
