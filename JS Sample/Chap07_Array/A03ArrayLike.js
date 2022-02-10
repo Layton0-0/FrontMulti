@@ -11,8 +11,10 @@ let obj = {
     0: 'NolBu',
     1: 'HungBu',
     length: 2,
-    pop: function () {
-
+    push: (value) => {
+        this.length++;
+        this[this.length] = value;
+        return this.length;
     }
 }
 obj[0];
