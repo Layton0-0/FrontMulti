@@ -13,14 +13,15 @@
     <script type="text/javascript">
       (function () {
         function loadEvent() {
-          const btn = document.querySelector('button[type="submit"]');
-          btn.addEventListener("click", function (evt) {
+          const form = document.querySelector("form");
+          form.addEventListener("submit", function (evt) {
+            // evt.preventDefault();
             const name = document.querySelector('input[name="name"]');
             if (!name.value || name.value.length < 10) {
-              evt.preventDefault();
               alert("값을 입력해주세요");
               name.value = "";
               name.focus();
+              return false;
             }
             console.log(name);
             // document.appendChild(name.value);
