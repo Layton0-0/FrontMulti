@@ -1,53 +1,98 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <title>A01 Location / History</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="card-body">
-        <h1>Location</h1>
+      <h1>Location</h1>
 
-        <div>
-            href: <span id="hash"></span><br>
-            host: <span id="host"></span><br>
-            hostname: <span id="hostname"></span><br>
-            href: <span id="href"></span><br>
-            pahtname: <span id="pahtname"></span><br>
-            search: <span id="search"></span><br>
-            port: <span id="port"></span><br>
-            protocol: <span id="protocol"></span><br>
-        </div>
-        <br>
+      <div>
+        href: <span id="hash"></span><br />
+        host: <span id="host"></span><br />
+        hostname: <span id="hostname"></span><br />
+        href: <span id="href"></span><br />
+        pathname: <span id="pathname"></span><br />
+        search: <span id="search"></span><br />
+        port: <span id="port"></span><br />
+        protocol: <span id="protocol"></span><br />
+      </div>
+      <br />
 
-        <div>
-            <button>href</button>
-            <button>assign</button>
-            <button>Replace</button>
-            <button>Reload</button>
-            <button>search</button>
-            <br>
+      <div>
+        <button onclick="google()">href</button>
+        <button onclick="naver()">assign</button>
+        <button onclick="daum()">Replace</button>
+        <button onclick="location.reload()">Reload</button>
+        <button onclick="location.search='name=Nolbu&age=20'">search</button>
+        <br />
 
-            <button>back</button>
-            <button>forward</button>
-            <button>go(-2)</button>
-            <button>go(2)</button>
-        </div>
+        <button onclick="goBack()">back</button>
+        <button onclick="goForward()">forward</button>
+        <button onclick="backTwo()">go(-2)</button>
+        <button onclick="fowardTwo">go(2)</button>
+      </div>
     </div>
 
     <script type="text/javascript">
-        var hash;
-        var host;
-        var hostname;
-        var href;
-        var pahtname;
-        var search;
-        var port;
-        var protocol;
-        
+      // window.은 생략 가능하다.
+      var hash = window.location.hash;
+      var host = location.host;
+      var hostname = location.hostname;
+      var href = location.href;
+      var pathname = location.pathname;
+      var search = location.search;
+      var port = location.port;
+      var protocol = location.protocol;
+
+      let x = document.getElementById("hash");
+      console.log(x);
+      x.innerHTML = hash;
+      document.getElementById("host").innerHTML = host;
+      document.getElementById("hostname").innerHTML = hostname;
+      document.getElementById("href").innerHTML = href;
+      document.getElementById("pathname").innerHTML = pathname;
+      document.getElementById("search").innerHTML = search;
+      document.getElementById("port").innerHTML = port;
+      document.getElementById("protocol").innerHTML = protocol;
+
+      // http: Hyper Text Transform Protocal
+      // html: Hyper Text Markup Language
+      // https -> s가 붙으면 보안이 추가됨.
+
+      function goBack() {
+        window.history.back();
+      }
+      function goForward() {
+        history.forward();
+      }
+      function backTwo() {
+        history.go(-2);
+      }
+      function fowardTwo() {
+        history.go(2);
+      }
+
+      function google() {
+        location.href = "http://www.google.com";
+      }
+
+      function naver() {
+        // history를 남기고 이동한다.
+        location.assign("http://www.naver.com");
+      }
+      function daum() {
+        // history를 남기지 않고 이동한다.
+        location.replace("http://www.daum.net");
+      }
     </script>
-</body>
+  </body>
 </html>
