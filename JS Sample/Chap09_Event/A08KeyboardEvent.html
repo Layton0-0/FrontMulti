@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <title>A08 Keyboard Event / page 779</title>
     <script type="text/javascript">
-        (function(){
-            
-        })();
-    </script>
-</head>
-<body>
-    <div class="card-body">
-        <h2>8. KeyBoard Event</h2>
+      (function () {
+        function loadEvent() {
+          let name = document.getElementById("name");
+          //   name.focus();
+          name.addEventListener("keyup", function (evt) {
+            console.log("keyCode:", evt.keyCode);
+            console.log("key:", evt.key);
+            console.log("Code:", evt.code);
+            console.log("Alt, Ctrl, Shift", evt.altKey, evt.ctrlKey, evt.shiftKey);
 
-        <input type="text" name="name" class="form-control">
-        <button>CLICK</button>
-        <br>
-        <div id="result"></div>
+            if (evt.keyCode === 65 && evt.shiftKey) {
+              location.assign("http://www.daum.net");
+            }
+
+            if (evt.keyCode === 13) {
+              console.log("서버에 전송하는 로직 어쩌구");
+              evt.target.value = "";
+              evt.target.focus();
+            }
+          });
+
+          document.getElementById("btn").addEventListener("click", function (evt) {
+            console.log(evt);
+            // shift키를 누르면서 클릭했니?
+            if (evt.shiftKey) {
+              location.assign("http://www.daum.net");
+            }
+          });
+        }
+        addEventListener("load", loadEvent);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="card-body">
+      <h2>8. KeyBoard Event</h2>
+
+      <input type="text" name="name" id="name" class="form-control" placeholder="Let's get it." />
+      <button id="btn">CLICK</button>
+      <br />
+      <div id="result"></div>
     </div>
-</body>
+  </body>
 </html>

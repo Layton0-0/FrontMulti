@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <title>A11 Event This / page 789</title>
     <script type="text/javascript">
+      (function () {
+        var data = [
+          { name: "NolBu", kor: 100, eng: 90 },
+          { name: "HungBu", kor: 90, eng: 90 },
+          { name: "BangJa", kor: 80, eng: 90 },
+        ];
 
-        (function(){
-            var data = [
-                {name: 'NolBu', kor: 100, eng: 90},
-                {name: 'HungBu', kor: 90, eng: 90},
-                {name: 'BangJa', kor: 80, eng: 90},
-            ];
-            
-        })();
-        
+        function loadEvent() {
+          function btn02Event(evt, color) {
+            console.log(evt.target);
+            evt.target.style.color = color;
+          }
+          document.querySelector("#btn2").addEventListener("click", function (evt) {
+            // console.log(this);
+            // addevent는 이벤트 멤버변수 하나만 받아오기 때문에 그걸 매개로 다른 함수를 만들어 호출해 이벤트를 이용.
+            btn02Event(evt, "orange");
+          });
+          function btn03Event(color) {
+            return function (evt) {
+              console.log(evt.target);
+              evt.target.style.backgroundColor = color;
+            };
+          }
+          document.querySelector("#btn3").addEventListener("click", btn03Event("green"));
+        }
+        addEventListener("load", loadEvent);
+      })();
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="card-body">
-        <h2>11. Event This</h2>
+      <h2>11. Event This</h2>
 
-        <div>
-            <button name="btn" id='btn1'>CLICK</button>
-            <button id='btn2'>CLICK</button>
-            <button id='btn3'>CLICK</button>
-        </div>
+      <div>
+        <button name="btn" id="btn1">CLICK</button>
+        <button id="btn2">CLICK</button>
+        <button id="btn3">CLICK</button>
+      </div>
     </div>
-</body>
+  </body>
 </html>
