@@ -21,7 +21,8 @@
               alert("값을 입력해주세요");
               name.value = "";
               name.focus();
-              return false;
+              evt.preventDefault();
+              return;
             }
             console.log(name);
             // document.appendChild(name.value);
