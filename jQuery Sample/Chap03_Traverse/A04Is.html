@@ -1,37 +1,70 @@
 <!DOCTYPE html>
 <html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>A04 IS</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#save").click(function () {
+          /*
+					// 첫번째 방법
+          var fruit = $('#content > input[class="fruit"]:checked').map(function (index, elem) {
+            // console.log(index, elem.value);
+            return elem.value;
+          });
 
-<head>
-	<meta charset="utf-8">
-	<title>A04 IS</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
+          console.log(fruit);
 
-		});
-	</script>
-</head>
+          for (var i = 0; i < fruit.length; i++) {
+            console.log(fruit[i]);
+          }
+					*/
+          // 두번째 방법. 자바스크립트 배열로 돌려주게 하는 법.
+          /*
+          var fruit = $('#content > input[class="fruit"]:checked')
+            .map(function (index, elem) {
+              // console.log(index, elem.value);
+              return elem.value;
+            })
+            .get()
+            .join(" - ");
+						*/
+          // 세번째 방법.
+          var x = $('#content > input[class="fruit"]:checked')
+            .map(function (index, elem) {
+              if ($(elem).is(":checked")) return elem.value;
+            })
+            .get()
+            .join(" - ");
+          console.log(x);
 
-<body>
-	
-	<div class="card-body" id="content">
-		<h2>지금 먹고 싶은 과일은?</h2>
+          $("#list").html(x);
+        });
+      });
+    </script>
+  </head>
 
-		<input type="checkbox" class="fruit" value="1">사과,
-		<input type="checkbox" class="fruit" value="2">배,
-		<input type="checkbox" class="fruit" value="3">키위,
-		<input type="checkbox" class="fruit" value="4">포도<br/>
-		<input type="checkbox" class="fruit" value="5">딸기,
-		<input type="checkbox" class="fruit" value="6">귤,
-		<input type="checkbox" class="fruit" value="7">수박<br/>
-	</div>
+  <body>
+    <div class="card-body" id="content">
+      <h2>지금 먹고 싶은 과일은?</h2>
 
-	<div class="card-body">
-		<button id="save">선택 저장</button>
-		<div id="list"></div>
-	</div>
-	
-</body>
+      <input type="checkbox" class="fruit" value="1" />사과,
+      <input type="checkbox" class="fruit" value="2" />배,
+      <input type="checkbox" class="fruit" value="3" />키위,
+      <input type="checkbox" class="fruit" value="4" />포도<br />
+      <input type="checkbox" class="fruit" value="5" />딸기,
+      <input type="checkbox" class="fruit" value="6" />귤,
+      <input type="checkbox" class="fruit" value="7" />수박<br />
+    </div>
 
+    <div class="card-body">
+      <button id="save">선택 저장</button>
+      <div id="list"></div>
+    </div>
+  </body>
 </html>
