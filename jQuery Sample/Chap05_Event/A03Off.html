@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>A02 OFFß</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <style>
+      div#a {
+        margin: 5px 5px 5px 5px;
+        border: solid 1px gray;
+        padding: 10px 10px 10px 10px;
+        text-align: center;
+        position: absolute;
+        left: 100px;
+        top: 50px;
+      }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#test1").on("click", function (evt) {
+          console.log("CLick1");
+        });
 
-<head>
-	<meta charset="utf-8">
-	<title>A02 OFFß</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<style>
-		div#a { margin:5px 5px 5px 5px; border:solid 1px gray; padding:10px 10px 10px 10px; text-align: center; 
-			position:absolute; left:100px; top:50px; }
-	</style>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			
-		});
-	</script>
-</head>
+        $("#test2").on("click", function (evt) {
+          console.log("CLick2");
+          // this에 등록된 모든 이벤트를 삭제
+          $(this).off(); // removeEventListener(딱 한번 실행하고 나면 이벤트를 지워버림.)
+        });
 
-<body>
-	<div class="card-body" id="a">
-		<button id="test1">one 메서드</button>
-		<button id="test2">two 메서드</button>
-		<button id="test3">three 메서드</button>
-		<button id="test4">four 메서드</button>
+        // on -> one으로 변경하면 1번만 실행되는 이벤트가 만들어진다.
+        $("#test3").one("click", function (evt) {
+          console.log("CLick3");
+        });
 
-	</div>
-</body>
+        $("#test4").attr("disabled", "disabled");
+        $('input[name="isChecked"]').on("click", function (evt) {
+          $("#test4").removeAttr("disabled");
+          if ($(this).is(":checked")) {
+            // 혹시 이전 click 이벤트가 안 지워진 상태라면 지우고, 지워진 상태면 만들어진 새로운 이벤트를 등록
+            $("#test4")
+              .off("click")
+              .on("click", function () {
+                console.log("CLick4");
+              });
+          } else {
+            $("#test4").attr("disabled", "disabled");
+            $("#test4").off("click");
+          }
+        });
+      });
+    </script>
+  </head>
 
+  <body>
+    <div class="card-body" id="a">
+      <button id="test1">one 메서드</button>
+      <button id="test2">two 메서드</button>
+      <button id="test3">three 메서드</button><br />
+      <input type="checkbox" name="isChecked" />
+      <button id="test4">four 메서드</button>
+    </div>
+  </body>
 </html>
