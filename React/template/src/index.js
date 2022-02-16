@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // 여러 개 줄때는 {} 안에 여러개 ,로 구분해서 넣음.
-import { App, x } from './App';
+import App from './App';
 // 닉네임은 커스터마이징 가능함. 보편적으로 같은 이름으로 적음. 하나만 쓸 때만 가능.
 // {} 내부의 이름은 변수명과 동일해야함.
 import { Abb, x as AbbX } from './Abb';
