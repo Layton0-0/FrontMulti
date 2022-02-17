@@ -16,15 +16,17 @@ const TodoTemplate = () => {
 
     // 함수
     // update는 map delete는 filter
-    const updateTodo = (id) => todoList.map(todo => {
-        const todos = { todo };
-        if (todos.id === id) {
-            return { ...todos, done: !todos.done }
-        } else {
-            return todos;
-        }
+    const updateTodo = (id) => {
+        const todos = todoList.map(todo => {
+            // todo => {id: 2, text: `2번째 할 일`, done: false}
+            if (todo.id === id) {
+                return { ...todo, done: !todo.done }
+            } else {
+                return todo;
+            }
+        });
         setTodoList(todos);
-    })
+    }
 
     return (
         <div>
@@ -32,7 +34,7 @@ const TodoTemplate = () => {
 
             <TodoForm />
             <hr />
-            <TodoList todoList={todoList} />
+            <TodoList todoList={todoList} updateTodo={updateTodo} />
 
         </div>
     )
