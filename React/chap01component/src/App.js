@@ -5,6 +5,7 @@ import A01Props from './components/A01Props';
 import A02State from './components/A02State';
 import A04CreateDOM from './components/A04CreateDOM';
 import A05Hook from './components/A05Hook';
+import A06Currency from './components/A06Currency';
 
 function App() {
   // 이 변수는 변경돼도 화면에 반영되지 않는 일반 변수
@@ -28,6 +29,10 @@ function App() {
     <div className='container'>
       <div className='col-12'>
         <h1>Component</h1>
+      </div>
+
+      <div className='con-12'>
+        <A06Currency />
       </div>
 
       <div className='con-12'>
