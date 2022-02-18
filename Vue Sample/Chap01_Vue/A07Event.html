@@ -1,65 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <script type="text/javascript" src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
     <style rel="stylesheet" type="text/css">
-        #container { width: 300px; height: 150px; border: 1px solid gray; display: flex; justify-content: center; align-items: center;}
-        #inner { width: 100px; height: 100px; background: orange; padding: 10px; margin: 10px; text-align: center; display: flex; justify-content: center; align-items: center;}
+      #container {
+        width: 300px;
+        height: 150px;
+        border: 1px solid gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #inner {
+        width: 100px;
+        height: 100px;
+        background: orange;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
     <title>A07 Event</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app" class="card-body">
-        <h3>A07 Event</h3>
-        <br>
+      <h3>A07 Event</h3>
+      <br />
 
-        Num: {{num}}<br>
-        <button>+1</button>
-        <button>-1</button>
-        <button>once</button>
+      Num: {{num}}<br />
+      <button v-on:click="num++">+1</button>
+      <button @click="decrease">-1</button>
+      <!-- once가 붙으면 1번만 실행됨. -->
+      <button @click.once="decrease">once</button>
 
-        <button >Key</button>
+      <!-- shift, alt, ctrl, meta(window/mac), left, right, middle -->
+      <!-- shift를 누르면서 눌러야 기능 적용. -->
+      <button @click.shift="decrease">Key</button>
 
-        <button>Event</button>
-        <button>Event</button>
-        <br>
-        <br>
-        
-        <div id="container">
-        <div id="inner">ONE</div>
-        <div id="inner">TWO</div>
-        </div>
-        <br>
-        <br>
+      <!-- 괄호 없이 주면 event 객체가 전달된다 -->
+      <button @click="increase">Event</button>
+      <button @click="increase(3)">Event</button>
+      <button @click="(evt)=>increaseTwo(evt,3)">Event</button>
+      <br />
+      <br />
 
-        <div>
-            <a href="http://www.daum.net">DAUM</a> |
-            <a href="http://www.naver.com">NAVER</a> |
-        </div>
-        <br>
+      <div id="container" @click="outer">
+        <div id="inner" @click="innerOne">ONE</div>
+        <div id="inner" @click.stop="innerTwo">TWO</div>
+      </div>
+      <br />
+      <br />
 
-        <input type="text" class="form-control"><br>
-        esc: <input type="text" class="form-control" v-model="name"/><br>
-        Enter: <input type="text" class="form-control" v-model="msg"/><br>
-        Esc OR Enter<input type="text" class="form-control"/><br>
+      <div>
+        <a href="http://www.daum.net" @click="daum">DAUM</a> |
+        <a href="http://www.naver.com" @click.prevent="naver">NAVER</a> |
+      </div>
+      <br />
+
+      <input type="text" class="form-control" @keyup="keyboardEvent" /><br />
+      <!-- . 뒤에 오는 키로 지정 -->
+      esc: <input type="text" class="form-control" v-model="name" @keyup.esc="escEvent" /><br />
+      Enter:
+      <input type="text" class="form-control" v-model="msg" @keyup.enter="enterEvent" /><br />
+      <!-- esc or enter 형태(@keyup.esc.enter)는 동시에 안됨. 하나만 눌러도 실행됨. alt랑 65('a')는 가능. -->
+      Esc OR Enter<input type="text" class="form-control" @keyup.alt.65="orEvent" /><br />
     </div>
 
     <script type="text/javascript">
-        new Vue({
-            el: '#app',
-            data: {
-                num: 0,
-                name: 'Guest',
-                msg: ''
-            },
-            methods: {
-                
-            },
-        })
+      new Vue({
+        el: "#app",
+        data: {
+          num: 0,
+          name: "Guest",
+          msg: "",
+        },
+        methods: {
+          decrease: function () {
+            this.num--;
+          },
+          increase: function (n) {
+            this.num += n;
+          },
+          increaseTwo: function (evt, n) {
+            console.log(evt.target);
+            this.num += n;
+          },
+          outer: function (evt) {
+            console.log("outer=> ", evt.target);
+            console.log("outer=> ", evt.currentTarget);
+          },
+          innerOne: function (evt) {
+            evt.stopPropagation();
+            console.log("innerOne=> ", evt.target);
+            console.log("innerOne=> ", evt.currentTarget);
+          },
+          innerTwo: function (evt) {
+            console.log("innerTwo=> ", evt.target);
+            console.log("innerTwo=> ", evt.currentTarget);
+          },
+          daum: function (evt) {
+            evt.preventDefault();
+            console.log("daum");
+          },
+          naver: function (evt) {
+            console.log("naver");
+          },
+          keyboardEvent: function (evt) {
+            console.log("key: ", evt.key);
+            console.log("code: ", evt.code);
+            console.log("keyCode: ", evt.keyCode);
+            console.log("fun: ", evt.shiftkey, evt.ctrlKey, evt.altKey, evt.metaKey);
+          },
+          escEvent: function () {
+            this.name = "";
+          },
+          enterEvent: function (evt) {
+            if (evt.target.value.length < 10) {
+              alert("tooooo short!");
+              evt.target.focus();
+            } else {
+              this.name = evt.target.value;
+            }
+          },
+          orEvent: function (evt) {
+            if (evt.target.value.length < 10) {
+              alert("hey short!");
+              evt.target.focus();
+            } else {
+              this.name = evt.target.value;
+            }
+          },
+        },
+        // computed는 리턴이 돼야하고 그 값을 변수처럼 대입하는 형태로 사용.
+      });
     </script>
-</body>
+  </body>
 </html>

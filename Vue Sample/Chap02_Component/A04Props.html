@@ -1,36 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <script type="text/javascript" src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <title>A02 Component Props</title>
-</head>
-<body>
-
+    <title>A04 Component Props</title>
+  </head>
+  <body>
     <div class="card-body" id="app">
-        <h3>A04 Component Props</h3>
+      <h3>A04 Component Props</h3>
 
-        
+      <!-- props로 키 이름 넘김. -->
+      <!-- html 속성 형태로 넘긴 값은 문자열로 전달된다. -->
+      <!-- : 뒤는 실질적인 값이거나 변수명으로 인식한다 -->
+      <comp-one
+        name="nolbu"
+        :age="30"
+        :add="address"
+        :user="user"
+        :arr="ary"
+        :on-plus="onPlus"
+        isChecked
+      ></comp-one>
     </div>
-    
+
+    <template id="tempOne">
+      <div>
+        Name: {{name}}<br />
+        Age: {{age + 1000}}<br />
+        Address: {{add}}<br />
+        User: {{user.name}} / {{user.age}} / {{user.address}} <br />
+        Array: {{arr[0]}} / {{arr[1]}} / {{arr[5]}} <br />
+        onPlus: {{onPlus(10, 20)}} <br />
+        <!-- isChecked와 같이 단일 태그는 기본값 false로 넘어감. -->
+        isChecked: {{isChecked ? '동의어보감' : '응아님'}} <br />
+      </div>
+    </template>
+
     <script type="text/javascript">
-        Vue.config.devtools = true
-        var app = new Vue({
-            el: '#app',
-            data: {
-                address: 'Seoul',
-                user: {name: 'Hong', age: 20},
-                ary: [10, 20, 30],
-            },
-            methods: {
-                onPlus: function(x, y) {
-                    return `${x} + ${y} = ${x + y}`
-                }
-            }
-        });
+      Vue.component("compOne", {
+        template: "#tempOne",
+        // 넘어오는 키 이름을 배열에 문자열로 정의한다.
+        props: ["name", "age", "add", "user", "arr", "on-plus", "isChecked"],
+        data: function () {
+          return {};
+        },
+        methods: {},
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          address: "Seoul",
+          user: { name: "Hong", age: 20 },
+          ary: [10, 20, 30],
+        },
+        methods: {
+          onPlus: function (x, y) {
+            return `${x} + ${y} = ${x + y}`;
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>

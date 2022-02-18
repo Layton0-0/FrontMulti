@@ -1,80 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <script type="text/javascript" src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
     <title>A03 Repeat</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="card-body" id="app">
-        <h3>A03 Vue Component Repeat</h3>
-        <br>
+      <h3>A03 Vue Component Repeat</h3>
+      <br />
 
-        <h5>1. v-show</h5>
-        <div>
-            v-show가 있는 엘리먼트는 항상 렌더링 되고 DOM에 남아있다는 점입니다. v-show는 단순히 엘리먼트에 display CSS 속성을 토글합니다.
-        </div>
-        <br />
+      <h5>1. v-show</h5>
+      <!-- v-show가 참이면 화면에 표시하고, 거짓이면 화면에 표시하지 않는다. -->
+      <div v-show="check">
+        v-show가 있는 엘리먼트는 항상 렌더링 되고 DOM에 남아있다는 점입니다. v-show는 단순히
+        엘리먼트에 display CSS 속성을 토글합니다.
+      </div>
+      <br />
 
-        <h5>2. v-if</h5>
-        <div>
-            Vue에서는 v-if 디렉티브를 사용하여 조건부 블럭을 작성할 수 있습니다.
-        </div>
-        <div>
-            v-else-if는 이름에서 알 수 있듯, v-if에 대한 “else if 블록” 역할을 합니다. 또한 여러 개를 사용할 수 있습니다.
-        </div>
-        <div>
-            v-else 디렉티브를 사용하여 v-if에 대한 “else 블록”을 나타낼 수 있습니다
-        </div>
-        <br>
+      <h5>2. v-if</h5>
+      <!-- if로 없어지면 아예 element에서 없어짐. -->
+      <!-- 다른 태그가 중간에 끼면 if문 깨짐. -->
+      <div v-if="name === 'nolbu'">
+        Vue에서는 v-if 디렉티브를 사용하여 조건부 블럭을 작성할 수 있습니다.
+      </div>
+      <div v-else-if="name === 'yuri'">
+        v-else-if는 이름에서 알 수 있듯, v-if에 대한 “else if 블록” 역할을 합니다. 또한 여러 개를
+        사용할 수 있습니다.
+      </div>
+      <div v-else>v-else 디렉티브를 사용하여 v-if에 대한 “else 블록”을 나타낼 수 있습니다</div>
+      <br />
 
-        <h5>3. v-for</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Kor</th>
-                <th>Eng</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-        <br>
+      <h5>3. v-for</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Kor</th>
+            <th>Eng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 반복문 -->
+          <tr v-for="(item, index) in students" :key="index">
+            <td>{{index + 1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.kor}}</td>
+            <td>{{item.eng}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
 
-        <div>
-            <button class="btn btn-outline-primary btn-sm" >Check</button>
-            <button class="btn btn-outline-primary btn-sm" >IF</button>
-            <button class="btn btn-outline-primary btn-sm" >Else IF</button>
-            <button class="btn btn-outline-primary btn-sm" >Else</button><br>
-        </div>
+      <div>
+        <button class="btn btn-outline-primary btn-sm" @click="changeCheck">Check</button>
+        <button class="btn btn-outline-primary btn-sm" @click="changeName('yoon')">IF</button>
+        <button class="btn btn-outline-primary btn-sm" @click="changeName('nolbu')">Else IF</button>
+        <button class="btn btn-outline-primary btn-sm" @click="changeName('yuri')">Else</button
+        ><br />
+      </div>
     </div>
 
     <script type="text/javascript">
-        let model = {
-            students: [
-                { name: 'HongGilDong', age: 20, kor: 100, eng: 80 },
-                { name: 'NolBu', age: 50, kor: 90, eng: 90 },
-                { name: 'HungBu', age: 40, kor: 70, eng: 60 },
-            ]
-        }
+      let model = {
+        students: [
+          { name: "HongGilDong", age: 20, kor: 100, eng: 80 },
+          { name: "NolBu", age: 50, kor: 90, eng: 90 },
+          { name: "HungBu", age: 40, kor: 70, eng: 60 },
+        ],
+      };
 
-        const app = new Vue({
-            el: '#app',
-            data: {
-                check: true,
-                name: 'nolbu',
-            },
-            methods: {
-                
-            },
-        })
+      const app = new Vue({
+        el: "#app",
+        data: {
+          check: false,
+          name: "nolbu",
+          //   남(자바스크립트)의 꺼 가져다가 쓸 수 있음.
+          students: model.students,
+        },
+        methods: {
+          changeCheck: function () {
+            this.check = !this.check;
+          },
+          changeName: function (str) {
+            this.name = str;
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>

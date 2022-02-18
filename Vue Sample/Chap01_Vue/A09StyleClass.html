@@ -1,58 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <script type="text/javascript" src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
     <style type="text/css">
-        .one { color: orange; }
-        .two { font-size: 24pt; }
-        .three { font-weight: bold; }
-        .warning {background-color: orange; color: gray; }
+      .one {
+        color: orange;
+      }
+      .two {
+        font-size: 24pt;
+      }
+      .three {
+        font-weight: bold;
+      }
+      .warning {
+        background-color: orange;
+        color: gray;
+      }
 
-        [v-cloak] { display: none; }
+      [v-cloak] {
+        display: none;
+      }
     </style>
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app" class="card-body">
-        <h3>A09 Style Binding</h3>
+      <h3>A09 Style Binding</h3>
 
-        <div style="color: orange; font-size: 24pt;">{{hello}}</div>
-        <div>{{hello}}</div>
-        <div>{{hello}}</div>
-        <br>
+      <div style="color: orange; font-size: 24pt">{{hello}}</div>
+      <div :style="{color: 'gray', fontSize: '24pt'}">{{hello}}</div>
+      <!-- 좋은 방식이 아님. computed로 빼서 사용. -->
+      <div :style="styleOne">{{hello}}</div>
+      <div :style="styleTwo" @mouseenter="changeEnter" @mouseleave="changeLeave">{{hello}}</div>
+      <br />
 
-        <h3>Class Binding</h3>
+      <h3>Class Binding</h3>
 
-        <div class="one">{{hello}}</div>
-        <div class="one">{{hello}}</div>
-        <div class="one">{{hello}}</div>
-        <br>
+      <div class="one" :class="['two', 'three']">{{hello}}</div>
+      <div class="one" :class="clzTwo">{{hello}}</div>
+      <div class="one" :class="[clzTwo, 'three']">{{hello}}</div>
+      <br />
 
-        <div class="one">{{hello}}</div>
-        <div class="one">{{hello}}</div>
-        <input type="checkbox"> Check<br />
-        <br>
+      <div class="one" :class="{'two': true, 'three': true}">{{hello}}</div>
+      <div class="one" :class="{'two': true, 'three': false}">{{hello}}</div>
+      <div class="one" :class="{'two': true, 'three': isChecked}">{{hello}}</div>
+      <input type="checkbox" v-model="isChecked" /> Check<br />
+      <br />
 
-        <input type="text" class="form-control" />
+      <input type="text" class="form-control" />
     </div>
 
     <script type="text/javascript">
-        new Vue({
-            el: '#app',
-            data: {
-                hello: 'Hello World!!',
-            },
-            computed: {
-                
-            },
-            methods: {
-                
-            }
-        })
+      new Vue({
+        el: "#app",
+        data: {
+          hello: "Hello World!!",
+          styleOne: { color: "lightblue", fontSize: "24pt" },
+          clzTwo: {},
+          isChecked: true,
+        },
+        computed: {
+          styleTwo: function () {
+            // 매개변수가 없음.
+            return { color: "lightgray", fontSize: "24pt" };
+          },
+        },
+        methods: {
+          changeEnter: function () {
+            this.styleOne.color = "lightgreen";
+            this.styleOne.backgroundColor = "yellow";
+          },
+          changeLeave: function () {
+            this.styleOne.color = "green";
+            this.styleOne.backgroundColor = "white";
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
