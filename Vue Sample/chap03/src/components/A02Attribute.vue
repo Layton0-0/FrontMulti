@@ -1,0 +1,51 @@
+<template>
+  <div class="card-body" id="app">
+    <h3>A02 Attribute Binding</h3>
+
+    <div>
+      <h5>1. 속성 바인딩</h5>
+      <!-- Vue() 내부에 값을 가져와 출력만 한다. 폼 요소에서 수정해도 변수값은 변경 안됨. 참조만 하는 지시자. -->
+      <!-- :를 앞에 붙이는 건 vue가 가지고 있는 속성을 쓰겠다. 뒤에 값으로 변수가 옴.-->
+      <input type="text" class="form-control" v-bind:value="name" />
+      <input type="text" class="form-control" :value="name" />
+      <input type="text" :class="formCtrl" :value="name" />
+      <div>Hello World</div>
+    </div>
+    <br />
+
+    <div>
+      <h5>2. 양방향 바인딩</h5>
+      <!-- Vue() 내부에 선언된 값을 표시 및 수정 가능하게 하는 지시자.-->
+      <!-- value는 그냥 변수(name)를 가져만 오는 기능. v-model은 변수의 값 자체를 변경. -->
+      <input type="text" class="form-control" v-model="name" />
+      <!-- 두 번 사용가능 양 쪽 어디에서 적용해도 다 적용됨.-->
+      <input type="text" class="form-control" v-model="name" />
+      <input type="text" class="form-control" :value="name" @input="changeName2" />
+      Name: {{ name }} <br />
+      <button @click="changeName('유리')">Name</button>
+    </div>
+    <br />
+  </div>
+</template>
+
+<script>
+export default {
+  data: function () {
+    return {
+      // 값이 변경되면 화면 갱신 작업을 해주는 변수를 정의.
+      name: "윤정",
+      formCtrl: "form-control",
+    };
+  },
+  methods: {
+    changeName: function (str) {
+      this.name = str;
+    },
+    changeName2: function (evt) {
+      this.name = evt.target.value;
+    },
+  },
+};
+</script>
+
+<style scoped></style>

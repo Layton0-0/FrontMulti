@@ -50,18 +50,20 @@
 
 <script>
 export default {
-  data: {
-    title: "A01 Binding",
-    arr: [10, 11, 13],
-    obj: {
-      name: "윤정",
-      age: 20,
-    },
-    person: {
-      name: "유리",
-      fruit: ["Apple", "Melon", "Orange"],
-    },
-    txt: "<b>Hello World</b>",
+  data: function () {
+    return {
+      title: "A01 Binding",
+      arr: [10, 11, 13],
+      obj: {
+        name: "윤정",
+        age: 20,
+      },
+      person: {
+        name: "유리",
+        fruit: ["Apple", "Melon", "Orange"],
+      },
+      txt: "<b>Hello World</b>",
+    };
   },
   // 함수
   methods: {
@@ -79,4 +81,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+/* scoped 안붙이면 전역으로 선언됨. */
+.bind {
+  color: green;
+}
+</style>
