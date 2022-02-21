@@ -21,10 +21,14 @@
   </head>
   <body>
     <div class="card-body" id="app">
-      <h3>A05 Emit</h3>
+      <h3>A05 EmitBus</h3>
 
       <parent-comp></parent-comp>
     </div>
+
+    <script>
+      const EventBus = new Vue();
+    </script>
 
     <template id="childTemp">
       <div>
@@ -49,7 +53,7 @@
         },
         methods: {
           sendText: function () {
-            this.$emit("sendtext", this.$refs.txtField.value);
+            EventBus.$emit("sendtext", this.$refs.txtField.value);
           },
           sendObject: function () {
             const obj = {
@@ -57,7 +61,7 @@
               title: this.title,
               user: this.user,
             };
-            this.$emit("sendobject", obj);
+            EventBus.$emit("sendobject", obj);
           },
         },
       });
@@ -65,20 +69,24 @@
 
     <template id="parentTemp">
       <div>
-        <child-comp @sendtext="getText" @sendObject="getObject"></child-comp>
+        <child-comp></child-comp>
         <hr />
         <h4>Parent Component</h4>
         <div>Message: {{msg}}</div>
         <div>
           Message: {{data.msg}} <br />
           Title: {{data.title}} <br />
-          User: {{data.user.name}} // {{data.user.age}}
+          User: {{data.user.name}} / {{data.user.age}}
         </div>
       </div>
     </template>
     <script type="text/javascript">
       Vue.component("parentComp", {
         template: "#parentTemp",
+        created: function () {
+          EventBus.$on("sendtext", this.getText);
+          EventBus.$on("sendobject", this.getObject);
+        },
         data: function () {
           return {
             msg: "",
